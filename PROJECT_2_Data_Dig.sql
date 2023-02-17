@@ -111,6 +111,9 @@ INSERT INTO topmovies(Rank,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,
 INSERT INTO topmovies(Rank,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,OverseasPct,Year) VALUES (99,'Casino Royale','Sony',599.00,167.40,0.28,431.60,0.72,2006);
 INSERT INTO topmovies(Rank,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,OverseasPct,Year) VALUES (100,'Tangled','BV',591.80,200.80,0.34,391.00,0.66,2010);
 
+/*
+What are average, max, and min values in the data?
+*/
 SELECT Title, MAX(Domestic) AS total_domestic
 FROM topmovies GROUP BY studio;
 
@@ -120,16 +123,25 @@ FROM topmovies GROUP BY studio;
 SELECT Title, MIN(Domestic) AS Min
 FROM topmovies GROUP BY studio;
 
+/*
+What about those numbers per category in the data (using HAVING)?
+*/
 SELECT Title, AVG(Domestic) AS avg_domestic
 FROM topmovies 
 GROUP BY studio
 HAVING avg_domestic > 300
 ORDER BY avg_domestic;
 
+/*
+What interesting ways are there to filter the data (using AND/OR)?
+*/
 SELECT Title FROM topmovies 
 WHERE Domestic > 200 AND Worldwide > 1000
 GROUP BY Title;
 
+/*
+What ways are there to group the data values that don’t exist yet (using CASE)?
+*/
 SELECT COUNT (*),
     CASE
         WHEN Domestic > 200 then "Successful"
